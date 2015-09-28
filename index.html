@@ -93,7 +93,7 @@
             <div class="hidden-xs hidden-sm col-md-4 col-lg-3" ng-cloak>
                 <div class="shopContent">
                     <h3 class="shopHeader">Passive Shop</h3>
-                    <div ng-repeat="item in game.shop track by $index" class="shopItem">
+                    <div ng-repeat="item in game.shop track by $index" class="shopItem" ng-click="buyPassive($index)">
                         <!--<img ng-src="{{item.image}}" height="75px" width="75px" class="pull-left" ng-click="buyPassive($index)"/>-->
                         <h1 class="pull-right">{{ item.bought }}</h1>
                         <h3>{{ item.name }}</h3>

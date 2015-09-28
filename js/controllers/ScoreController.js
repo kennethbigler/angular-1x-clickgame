@@ -38,7 +38,7 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
 	
 	// if there was no game data fill with default values
 	if (!game) {
-		game = {score: 0, rate: 0, click: 1};
+		game = {score: 10000000, rate: 0, click: 1};
 		game.shop = window.shop;
 		game.clickShop = window.clickShop;
 	}
