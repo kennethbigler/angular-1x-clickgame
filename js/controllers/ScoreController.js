@@ -38,16 +38,18 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
 	
 	// if there was no game data fill with default values
 	if (!game) {
-		game = {score: 10000000, rate: 0, click: 1};
-		game.shop = window.shop;
-		game.clickShop = window.clickShop;
-	}
+		game = {score: 0, rate: 0, click: 1};
+        game.bought = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+		game.cBought = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    }
 
 	// set model to variables usable by the view
 	$scope.game = game;
 	saveGame();
     
     // initialize warning to hidden
+    $scope.shop = window.shop;
+    $scope.clickShop = window.clickShop;
     $scope.shopError = true;
     $scope.errorPrice = 0;
 
@@ -71,15 +73,16 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
 
 	// buy items that increase score per 1/10th of a second
 	$scope.buyPassive = function (num) {
-		if ($scope.game.score >= $scope.game.shop[num].price) {
-			$scope.game.rate += $scope.game.shop[num].rate;
-			$scope.game.score -= $scope.game.shop[num].price;
-			$scope.game.shop[num].bought += 1;
-			$scope.game.shop[num].price = Math.floor($scope.game.shop[num].price * 1.3);
+        var price = $scope.shop[num].price +
+            $scope.shop[num].price * $scope.game.bought[num] * 0.3;
+		if ($scope.game.score >= price) {
+			$scope.game.rate += $scope.shop[num].rate;
+			$scope.game.score -= price;
+			$scope.game.bought[num] += 1;
             saveGame();
 		} else {
-			//console.log("have: " + $scope.game.score + " cost: " + $scope.game.shop[num].price);
-            shopError($scope.game.shop[num].price);
+			//console.log("have: " + $scope.game.score + " cost: " + price);
+            shopError(price);
 		}
         closeNav();
         return;
@@ -87,15 +90,16 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
 
 	// buy items that increase score per click
 	$scope.buyClick = function (num) {
-		if ($scope.game.score >= $scope.game.clickShop[num].price) {
-			$scope.game.click += $scope.game.clickShop[num].rate;
-			$scope.game.score -= $scope.game.clickShop[num].price;
-			$scope.game.clickShop[num].bought += 1;
-			$scope.game.clickShop[num].price = Math.floor($scope.game.clickShop[num].price * 2);
+        var price = $scope.clickShop[num].price +
+            $scope.clickShop[num].price * $scope.game.cBought[num] * 0.3;
+		if ($scope.game.score >= price) {
+			$scope.game.click += $scope.clickShop[num].rate;
+			$scope.game.score -= price;
+			$scope.game.cBought[num] += 1;
             saveGame();
 		} else {
-			//console.log("have: " + $scope.game.score + " cost: " + $scope.game.clickShop[num].price);
-            shopError($scope.game.clickShop[num].price);
+			//console.log("have: " + $scope.game.score + " cost: " + price);
+            shopError(price);
 		}
         closeNav();
         return;
