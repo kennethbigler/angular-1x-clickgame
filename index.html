@@ -53,7 +53,7 @@
                     <li class="dropdown" ng-cloak>
                         <a class="dropdown-toggle handc" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Passive Shop<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li ng-repeat="item in game.shop track by $index">
+                            <li ng-repeat="item in shop track by $index">
                                 <a class="handc" ng-click="buyPassive($index)">{{ item.name }} - {{ item.bought }}</a>
                             </li>
                         </ul>
@@ -61,7 +61,7 @@
                     <li class="dropdown" ng-cloak>
                         <a class="dropdown-toggle handc" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Click Shop<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li ng-repeat="item in game.clickShop track by $index">
+                            <li ng-repeat="item in clickShop track by $index">
                                 <a class="handc" ng-click="buyClick($index)">{{ item.name }} - {{ item.bought }}</a>
                             </li>
                         </ul>
@@ -93,24 +93,24 @@
             <div class="hidden-xs hidden-sm col-md-4 col-lg-3" ng-cloak>
                 <div class="shopContent">
                     <h3 class="shopHeader">Passive Shop</h3>
-                    <div ng-repeat="item in game.shop track by $index" class="shopItem">
+                    <div ng-repeat="item in shop track by $index" class="shopItem" ng-click="buyPassive($index)">
                         <!--<img ng-src="{{item.image}}" height="75px" width="75px" class="pull-left" ng-click="buyPassive($index)"/>-->
-                        <h1 class="pull-right">{{ item.bought }}</h1>
+                        <h1 class="pull-right">{{ game.bought[$index] }}</h1>
                         <h3>{{ item.name }}</h3>
                         <p>Rate: ${{ item.rate }}/sec</p>
-                        <p>Price: ${{ item.price | number:0 }}</p>
+                        <p>Price: ${{ item.price + item.price * game.bought[$index] * 0.3 | number:0 }}</p>
                     </div>
                 </div>
             </div>
             <div class="hidden-xs hidden-sm col-md-4 col-lg-3" ng-cloak>
                 <div class="shopContent">
                     <h3 class="shopHeader">Click Shop</h3>
-                    <div ng-repeat="item in game.clickShop track by $index" class="shopItem">
+                    <div ng-repeat="item in clickShop track by $index" class="shopItem" ng-click="buyClick($index)">
                         <!--<img ng-src="{{item.image}}" height="75px" width="75px" class="pull-left" ng-click="buyClick($index)"/>-->
-                        <h1 class="pull-right">{{ item.bought }}</h1>
+                        <h1 class="pull-right">{{ game.cBought[$index] }}</h1>
                         <h3>{{ item.name }}</h3>
                         <p>Rate: ${{ item.rate }}/click</p>
-                        <p>Price: ${{ item.price | number:0 }}</p>
+                        <p>Price: ${{ item.price + item.price * game.cBought[$index] | number:0 }}</p>
                     </div>
                 </div>
             </div>
