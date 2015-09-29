@@ -110,7 +110,7 @@
                         <h1 class="pull-right">{{ game.cBought[$index] }}</h1>
                         <h3>{{ item.name }}</h3>
                         <p>Rate: ${{ item.rate }}/click</p>
-                        <p>Price: ${{ item.price + item.price * game.cBought[$index] * 0.3 | number:0 }}</p>
+                        <p>Price: ${{ item.price + item.price * game.cBought[$index] | number:0 }}</p>
                     </div>
                 </div>
             </div>

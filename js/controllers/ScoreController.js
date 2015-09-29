@@ -91,7 +91,7 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
 	// buy items that increase score per click
 	$scope.buyClick = function (num) {
         var price = $scope.clickShop[num].price +
-            $scope.clickShop[num].price * $scope.game.cBought[num] * 0.3;
+            $scope.clickShop[num].price * $scope.game.cBought[num];
 		if ($scope.game.score >= price) {
 			$scope.game.click += $scope.clickShop[num].rate;
 			$scope.game.score -= price;
