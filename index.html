@@ -54,7 +54,7 @@
                         <a class="dropdown-toggle handc" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Passive Shop<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li ng-repeat="item in shop track by $index">
-                                <a class="handc" ng-click="buyPassive($index)">{{ item.name }} - {{ item.bought }}</a>
+                                <a class="handc" ng-click="buyPassive($index)">{{ item.name }} - {{ game.bought[$index] }}</a>
                             </li>
                         </ul>
                     </li>
@@ -62,7 +62,7 @@
                         <a class="dropdown-toggle handc" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Click Shop<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li ng-repeat="item in clickShop track by $index">
-                                <a class="handc" ng-click="buyClick($index)">{{ item.name }} - {{ item.bought }}</a>
+                                <a class="handc" ng-click="buyClick($index)">{{ item.name }} - {{ game.cBought[$index] }}</a>
                             </li>
                         </ul>
                     </li>
