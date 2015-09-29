@@ -1,39 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Character Set -->
     <meta charset="UTF-8">
     <!-- Favicon -->
     <link rel="icon" href="https://tesla.exphosted.com/sites/default/files/favicon_1_0.ico" />
-    <!-- Device Compatibility -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Keywords for SEO, feel free to ignore this, it's an Intranet -->
-    <meta name="keywords" content="Ken, Kenneth, Bigler, Kenneth Bigler, Ken Bigler, Resume, HTML, CSS, JavaScript, C++, C, Software Developer, Web, Web Developer, Web Technologist, Santa Clara, SCU, scu, Santa Clara University, hours, hour reporting, timecard, time, card">
-    <!-- A short description of my website -->
-    <meta name="description" content="This is a site to report your hours in a timecard or time card">
-    <!-- I made this template, feel free to direct any questions about the template to kennethbigler@gmail.com-->
-    <meta name="author" content="Kenneth Bigler">
-    <!-- Site Title -->
-     <title>Mile Counter</title>
     <!-- Please note, CDNs are not supported in IE 8, we will have to download source code and host it -->
     <!-- Bootstrap Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" media="all">
     <!-- Google Font -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' media="all">
     <!-- Bootstrap Optional theme -->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">-->
     <!-- Custom Style Sheet -->
-    <link rel="stylesheet" href="css/mystyles.css">
+    <link rel="stylesheet" href="css/mystyles.css" media="all">
+    <!-- Device Compatibility -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Ken, Kenneth, Bigler, Kenneth Bigler, Ken Bigler, Resume, HTML, CSS, JavaScript, C++, C, Software Developer, Web, Web Developer, Web Technologist, Santa Clara, SCU, scu, Santa Clara University, hours, hour reporting, timecard, time, card">
+    <meta name="description" content="This is a site to report your hours in a timecard or time card">
+    <meta name="author" content="Kenneth Bigler">
+    <title>Mile Counter</title>
 </head>
 <!---------------------------------------------------------------------------------------------------->
-
 <body ng-app="myApp" ng-controller="MainController">
-
 <div class="container-fluid">
-
 <!---------------------------------------------------------------------------------------------------->
     <!-- Navigation Section -->
-    <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -45,7 +36,7 @@
                 </button>
                 <a class="navbar-brand">My Car</a>
             </div>
-            <!-- Main Navbar -->
+            <!-- Navbar -->
             <div id="navbar" class="navbar-collapse collapse navbar-right navbar-nav">
                 <ul class="nav navbar-nav">
                     <li><a class="handc" ng-click="resetScore()">Reset</a></li>
@@ -67,12 +58,11 @@
                         </ul>
                     </li>
                 </ul>
-            </div><!-- /Main Navbar -->
+            </div><!-- /Navbar -->
         </div><!-- /container -->
     </nav>
-
 <!---------------------------------------------------------------------------------------------------->
-    <!-- Main Body of the Website -->
+    <!-- Main Body -->
     <div class="row">
         <header></header>
         <div class="container-fluid">
@@ -83,11 +73,11 @@
                        Rate/click: ${{ game.click }}</p>
                 </div>
                 <img src="images/roadster.png" ng-click="addScore(game.click)" class="center handc" />
-                <div id="shopError" class="alert alert-danger" role="alert" ng-hide="shopError">
+                <div id="shopError" class="alert alert-danger" role="alert" ng-hide="err">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     Money: {{ game.score | floor }} <br />
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    Cost: {{ errorPrice | number }}
+                    Cost: {{ ep | number }}
                 </div>
             </div>
             <div class="hidden-xs hidden-sm col-md-4 col-lg-3" ng-cloak>
@@ -116,11 +106,8 @@
             </div>
         </div>
     </div><!-- /Main Body -->
-
 <!---------------------------------------------------------------------------------------------------->
-
 </div><!-- /container -->
-
 <!---------------------------------------------------------------------------------------------------->
 <!-- Please note, CDNs are not supported in IE 8, we will have to download source code and host it -->
 <!-- $ code from Google CDN for jQuery - used in Bootstrap -->
@@ -129,13 +116,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <!-- Angular Lasted compiled and minified stable release -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-cookies.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-cookies.min.js"></script>
+<!-- REMOVE THIS FOR PRODUCTION, IT IS FOR TESTING ONLY -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-mocks.js"></script>
 <!-- My own custom Javascript Functions -->
 <script src="js/app.js"></script>
 <script src="js/shop.js"></script>
 <script src="js/clickShop.js"></script>
 <script src="js/controllers/ScoreController.js"></script>
-
 <!---------------------------------------------------------------------------------------------------->
 </body>
 </html>
