@@ -53,7 +53,7 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
 // -------------------------------------     Purchasing    -------------------------------------- //
 	// buy items that increase score per 1/10th of a second
 	$scope.buyPassive = function (num) {
-        var p = $scope.shop[num].price + $scope.shop[num].price * $scope.game.bought[num] * 0.3;
+        var p = $scope.shop[num].price * Math.pow(1.3, $scope.game.bought[num]);
 		if ($scope.game.score >= p) {
 			$scope.game.rate += $scope.shop[num].rate;
 			$scope.game.score -= p;
@@ -63,10 +63,9 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
         closeNav();
         return;
 	};
-
 	// buy items that increase score per click
 	$scope.buyClick = function (num) {
-        var p = $scope.clickShop[num].price + $scope.clickShop[num].price * $scope.game.cBought[num];
+        var p = $scope.clickShop[num].price * Math.pow(2, $scope.game.cBought[num]);
 		if ($scope.game.score >= p) {
 			$scope.game.click += $scope.clickShop[num].rate;
 			$scope.game.score -= p;
@@ -76,6 +75,9 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
         closeNav();
         return;
 	};
+    $scope.pow = function (a, b) {
+        return Math.pow(a, b);
+    };
 // --------------------------------     Auto Score and Saving    --------------------------------- //
 	// save data to cookies every 60 seconds
 	setInterval(function () { $scope.$apply(function () { save(); }); }, 60000);
