@@ -1,4 +1,4 @@
-window.clickShop = [{
+window.cShop = [{
     "name":   "Paper Route",
     "image":  "images/roadster.png",
     "price":  200,

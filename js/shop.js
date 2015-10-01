@@ -102,12 +102,12 @@ window.shop = [{
     "name":   "Check Cashing",
     "image":  "images/roadster.png",
     "price":  3480000000000000000,
-    "rate":   1
+    "rate":   1690000000000000
 }, {
     "name":   "Upload Brain",
     "image":  "images/roadster.png",
     "price":  9990000000000000000,
-    "rate":   21600000000000000
+    "rate":   9160000000000000
 }, {
     "name":   "Software Patent Portfolio",
     "image":  "images/roadster.png",
