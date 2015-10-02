@@ -18,7 +18,6 @@
         'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-cookies.min.js',
         'js/app.js',
         'js/shop.js',
-        'js/clickShop.js',
         'js/controllers/ScoreController.js',
         'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-mocks.js'
     ].forEach(function(src) {
@@ -57,12 +56,12 @@
             <div id="navbar" class="navbar-collapse collapse navbar-right navbar-nav">
                 <ul class="nav navbar-nav">
                     <li><a class="handc" ng-click="reset()">Reset</a></li>
-                    <li><a href="mailto:kennethbigler@gmail.com?subject=Feedback">Feedback</a></li>
+                    <li><a class="handc" ng-click="collect()">Collect</a></li>
                     <li class="dropdown" ng-cloak>
                         <a class="dropdown-toggle handc" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Passive Shop<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li ng-repeat="item in shop track by $index">
-                                <a class="handc" ng-click="buyPassive($index)">{{ game.p[$index] }}: {{ item.name }} - ${{ item.price * pow(1.3, game.p[$index]) | lnumber }}</a>
+                                <a class="handc" ng-click="buyP($index)">{{ game.p[$index] }}: {{ item.name }} - ${{ item.price * pow(1.3, game.p[$index]) | lnumber }}</a>
                             </li>
                         </ul>
                     </li>
@@ -70,7 +69,23 @@
                         <a class="dropdown-toggle handc" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Click Shop<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li ng-repeat="item in cShop track by $index">
-                                <a class="handc" ng-click="buyClick($index)">{{ game.c[$index] }}: {{ item.name }} - ${{ item.price * pow(2, game.c[$index]) | lnumber }}</a>
+                                <a class="handc" ng-click="buyC($index)">{{ game.c[$index] }}: {{ item.name }} - ${{ item.price * pow(2, game.c[$index]) | lnumber }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" ng-cloak>
+                        <a class="dropdown-toggle handc" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Closed Rate<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="item in arShop track by $index">
+                                <a class="handc" ng-click="buyC($index)">{{ game.ar[$index] }}: {{ item.name }} - ${{ item.price * pow(2, game.ar[$index]) | lnumber }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" ng-cloak>
+                        <a class="dropdown-toggle handc" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Closed Capacity<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="item in acShop track by $index">
+                                <a class="handc" ng-click="buyC($index)">{{ game.ac[$index] }}: {{ item.name }} - ${{ item.price * pow(2, game.ac[$index]) | lnumber }}</a>
                             </li>
                         </ul>
                     </li>
@@ -83,7 +98,7 @@
     <div class="row">
         <header></header>
         <div class="container-fluid">
-            <div class="col-sm-12 col-md-4 col-lg-6">
+            <div class="col-sm-12 col-md-3 col-lg-3">
                 <div class="center" ng-cloak>
                     <h2>Score: ${{ game.score | lnumber:3 }}</h2>
                     <p>Rate/sec: ${{ game.rate | lnumber }}<br />Rate/click: ${{ game.click | lnumber }}</p>
@@ -94,11 +109,11 @@
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Cost: {{ ep | lnumber }}
                 </div>
             </div>
-            <div class="hidden-xs hidden-sm col-md-4 col-lg-3" ng-cloak>
+            <div class="hidden-xs hidden-sm col-md-3 col-lg-3" ng-cloak>
                 <div class="shopContent shadow">
                     <h3 class="shopHeader">Passive Shop</h3>
-                    <div ng-repeat="item in shop track by $index" class="shopItem" ng-click="buyPassive($index)">
-                        <!--<img ng-src="{{item.image}}" height="75px" width="75px" class="pull-left" ng-click="buyPassive($index)"/>-->
+                    <div ng-repeat="item in shop track by $index" class="shopItem" ng-click="buyP($index)">
+                        <!--<img ng-src="{{item.image}}" height="75px" width="75px" class="pull-left" ng-click="buyP($index)"/>-->
                         <h1 class="pull-right">{{ game.p[$index] }}</h1>
                         <h3>{{ item.name }}</h3>
                         <p>Rate: ${{ item.rate | lnumber }}/sec</p>
@@ -106,15 +121,37 @@
                     </div>
                 </div>
             </div>
-            <div class="hidden-xs hidden-sm col-md-4 col-lg-3" ng-cloak>
+            <div class="hidden-xs hidden-sm col-md-3 col-lg-3" ng-cloak>
                 <div class="shopContent shadow">
                     <h3 class="shopHeader">Click Shop</h3>
-                    <div ng-repeat="item in cShop track by $index" class="shopItem" ng-click="buyClick($index)">
-                        <!--<img ng-src="{{item.image}}" height="75px" width="75px" class="pull-left" ng-click="buyClick($index)"/>-->
+                    <div ng-repeat="item in cShop track by $index" class="shopItem" ng-click="buyC($index)">
+                        <!--<img ng-src="{{item.image}}" height="75px" width="75px" class="pull-left" ng-click="buyC($index)"/>-->
                         <h1 class="pull-right">{{ game.c[$index] }}</h1>
                         <h3>{{ item.name }}</h3>
                         <p>Rate: ${{ item.rate | lnumber }}/click</p>
                         <p>Price: ${{ item.price * pow(2, game.c[$index]) | lnumber }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-xs hidden-sm col-md-3 col-lg-3" ng-cloak>
+                <div class="shopContent shadow">
+                    <h3 class="shopHeader">App Closed Rate</h3>
+                    <div ng-repeat="item in arShop track by $index" class="shopItem" ng-click="buyAR($index)">
+                        <!--<img ng-src="{{item.image}}" height="75px" width="75px" class="pull-left" ng-click="buyAR($index)"/>-->
+                        <h1 class="pull-right">{{ game.ar[$index] }}</h1>
+                        <h3>{{ item.name }}</h3>
+                        <p>Rate: ${{ item.rate | lnumber }}/hour</p>
+                        <p>Price: ${{ item.price * pow(1.3, game.ar[$index]) | lnumber }}</p>
+                    </div>
+                </div>
+                <div class="shopContent shadow">
+                    <h3 class="shopHeader">App Closed Capacity</h3>
+                    <div ng-repeat="item in acShop track by $index" class="shopItem" ng-click="buyAC($index)">
+                        <!--<img ng-src="{{item.image}}" height="75px" width="75px" class="pull-left" ng-click="buyAC($index)"/>-->
+                        <h1 class="pull-right">{{ game.ac[$index] }}</h1>
+                        <h3>{{ item.name }}</h3>
+                        <p>Capacity: ${{ item.rate | lnumber }}</p>
+                        <p>Price: ${{ item.price * pow(1.3, game.ac[$index]) | lnumber }}</p>
                     </div>
                 </div>
             </div>

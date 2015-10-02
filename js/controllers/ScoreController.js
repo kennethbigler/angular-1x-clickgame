@@ -21,17 +21,26 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
 	var game = $cookies.getObject('game');
 	// if there was no game data fill with default values
 	if (!game) {
-		game = {score:0,rate:0,click:1,
+		game = {score:0,rate:0,click:1,arc:300,arr:50,
                 p:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                c:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                c:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                ac:[0,0,0,0,0,0,0,0,0,0,0],
+                ar:[0,0,0,0,0,0,0,0,0,0,0]
                };
+        game.date = new Date();
+    } else {
+        game.date.slice(0, -5);
+        game.date = new Date(game.date);
     }
-	// set model to variables usable by the view
+	// set model to view
 	$scope.game = game;
 	save();
-    // initialize warning to hidden
+    //Initialize Shops
     $scope.shop = window.shop;
     $scope.cShop = window.cShop;
+    $scope.arShop = window.arShop;
+    $scope.acShop = window.acShop;
+    // initialize warning to hidden
     $scope.err = true;
     $scope.ep = 0;
 // --------------------------------     Scope Score Modifiers    -------------------------------- //
@@ -45,9 +54,20 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
 		$scope.game.score += num;
 		return;
 	};
+    $scope.collect = function () {
+        var date = new Date(),
+            m = ((date - game.date) / 216000000) * game.arr;
+        if (game.arc < m) {
+            game.score += game.arc;
+        } else {
+            game.score += m;
+        }
+        game.date = date;
+        save();
+    };
 // -------------------------------------     Purchasing    -------------------------------------- //
 	// buy items that passively increase score
-	$scope.buyPassive = function (num) {
+	$scope.buyP = function (num) {
         var p = $scope.shop[num].price * Math.pow(1.3, $scope.game.p[num]);
 		if ($scope.game.score >= p) {
 			$scope.game.rate += $scope.shop[num].rate;
@@ -59,7 +79,7 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
         return;
 	};
 	// buy items that increase score per click
-	$scope.buyClick = function (num) {
+	$scope.buyC = function (num) {
         var p = $scope.cShop[num].price * Math.pow(2, $scope.game.c[num]);
 		if ($scope.game.score >= p) {
 			$scope.game.click += $scope.cShop[num].rate;
@@ -70,6 +90,31 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
         closeNav();
         return;
 	};
+    // buy items that increase score per hour
+    $scope.buyAC = function (num) {
+        var p = $scope.acShop[num].price * Math.pow(1.3, $scope.game.ac[num]);
+        if ($scope.game.score >= p) {
+			$scope.game.arc += $scope.acShop[num].rate;
+			$scope.game.score -= p;
+			$scope.game.ac[num] += 1;
+            save();
+		} else { err(p); }
+        closeNav();
+        return;
+    };
+    // buy items that increase score per hour
+    $scope.buyAR = function (num) {
+        var p = $scope.arShop[num].price * Math.pow(1.3, $scope.game.ar[num]);
+        if ($scope.game.score >= p) {
+			$scope.game.arr += $scope.arShop[num].rate;
+			$scope.game.score -= p;
+			$scope.game.ar[num] += 1;
+            save();
+		} else { err(p); }
+        closeNav();
+        return;
+    };
+// ---------------------------------     Display Functions    ----------------------------------- //
     // allow power funciton in html
     $scope.pow = function (a, b) {
         return Math.pow(a, b);
@@ -79,5 +124,4 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
 	setInterval(function () { $scope.$apply(function () { save(); }); }, 60000);
 	// add passive score every 1/10th of a second
     setInterval(function () { $scope.$apply(function () { $scope.add($scope.game.rate / 10); }); }, 100);
-// -------------------------------------     End Code    ---------------------------------------- //
 });
