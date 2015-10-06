@@ -48,6 +48,7 @@ div.shopContent {
 .center {
 	display: block;
 	margin: auto;
+    margin-bottom: 15px;
 }
 .shadow {
     -webkit-box-shadow: .0625em .3125em .625em #888;
@@ -57,6 +58,16 @@ div.shopContent {
 .handc {
 	cursor: pointer;
 	cursor: hand;
+}
+.btn-danger {
+	background-color: #CC0000;
+    border-color: #8E001C;
+	margin-bottom: 15px;
+    margin-top: 15px;
+	border-radius: 0px;
+	-webkit-box-shadow: .0625em .3125em .625em #888;
+       -moz-box-shadow: .0625em .3125em .625em #888;
+    		box-shadow: .0625em .3125em .625em #888;
 }
 
 /***** Navbar *****/

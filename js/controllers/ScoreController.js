@@ -1,15 +1,15 @@
 /*global $, console, app*/
 
-app.controller('MainController', function ($scope, $cookies, $timeout) {
+app.controller('MainController', function ($scope, $timeout, $localstorage) {
     "use strict";
 // -------------------------------     Define Helper Functions    -------------------------------- //
 	//helper function that saves cookies
 	function save() {
-		$cookies.putObject('game', $scope.game);
+		$localstorage.putObject('game', $scope.game);
+        //var games = $localstorage.getObject('game');
+        //console.log(games);
 		console.log("saved");
 	}
-    // close nav after a click
-    function closeNav() { $("#navbar").collapse('hide'); }
     // report not enough money
     function err(x) {
         $scope.err = false;
@@ -17,15 +17,15 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
         $timeout(function () { $scope.err = true; }, 3000);
     }
 // -----------------------------------     Initialize Data    ------------------------------------ //
-	// get game data from cookies
-	var game = $cookies.getObject('game');
+    // get game data from cookies
+	var game = $localstorage.getObject('game');
 	// if there was no game data fill with default values
-	if (!game) {
-		game = {score:0,rate:0,click:1,arc:300,arr:50,
-                p:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                c:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                ac:[0,0,0,0,0,0,0,0,0,0,0],
-                ar:[0,0,0,0,0,0,0,0,0,0,0]
+	if (Object.keys(game).length === 0) {
+		game = {score: 0, rate: 0, click: 1, arc: 300, arr: 50,
+                p: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                c: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                ac: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                ar: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                };
         game.date = new Date();
     } else {
@@ -46,8 +46,8 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
 // --------------------------------     Scope Score Modifiers    -------------------------------- //
 	//reset score
     $scope.reset = function () {
-		$cookies.remove('game');
-		window.location.reload();
+		$localstorage.remove('game');
+        window.location.reload();
 	};
 	// add clicks to score
 	$scope.add = function (num) {
@@ -63,6 +63,7 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
             game.score += m;
         }
         game.date = date;
+        $scope.closeNav();
         save();
     };
 // -------------------------------------     Purchasing    -------------------------------------- //
@@ -75,7 +76,7 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
 			$scope.game.p[num] += 1;
             save();
 		} else { err(p); }
-        closeNav();
+        $scope.closeNav();
         return;
 	};
 	// buy items that increase score per click
@@ -87,7 +88,7 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
 			$scope.game.c[num] += 1;
             save();
 		} else { err(p); }
-        closeNav();
+        $scope.closeNav();
         return;
 	};
     // buy items that increase score per hour
@@ -99,7 +100,7 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
 			$scope.game.ac[num] += 1;
             save();
 		} else { err(p); }
-        closeNav();
+        $scope.closeNav();
         return;
     };
     // buy items that increase score per hour
@@ -111,17 +112,29 @@ app.controller('MainController', function ($scope, $cookies, $timeout) {
 			$scope.game.ar[num] += 1;
             save();
 		} else { err(p); }
-        closeNav();
+        $scope.closeNav();
         return;
     };
 // ---------------------------------     Display Functions    ----------------------------------- //
     // allow power funciton in html
-    $scope.pow = function (a, b) {
-        return Math.pow(a, b);
-    };
+    $scope.pow = function (a, b) { return Math.pow(a, b); };
+    // close nav after a click
+    $scope.closeNav = function () { $("#navbar").collapse('hide'); };
 // -------------------------------     Auto Score and Saving    --------------------------------- //
 	// save data to cookies every 60 seconds
 	setInterval(function () { $scope.$apply(function () { save(); }); }, 60000);
 	// add passive score every 1/10th of a second
     setInterval(function () { $scope.$apply(function () { $scope.add($scope.game.rate / 10); }); }, 100);
 });
+/*  function save() {
+        $cookies.putObject('game', $scope.game);
+        console.log("saved");
+    }
+    // get game data from cookies
+	var game = $cookies.getObject('game');
+    if (!game) {...}
+    //reset score
+    $scope.reset = function () {
+		$cookies.remove('game');
+		window.location.reload();
+	};*/

@@ -1,0 +1,40 @@
+<div class="row">
+    <header></header>
+    <div class="container-fluid">
+        <button ng-click="collect()" class="btn btn-danger btn-lg btn-block">Collect Money</button>
+        <div class="col-sm-12 col-md-4 col-lg-6">
+            <div class="center" ng-cloak>
+                <h2>Score: ${{ game.score | lnumber:3 }}</h2>
+                <p>Rate/hour: ${{ game.arr | lnumber }}<br />Away Max: ${{ game.arc | lnumber }}</p>
+            </div>
+            <div id="shopError" class="alert alert-danger" role="alert" ng-hide="err">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Money: {{ game.score | lnumber }} <br />
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Cost: {{ ep | lnumber }}
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-3" ng-cloak>
+            <div class="shopContent shadow">
+                <h3 class="shopHeader">App Closed Rate</h3>
+                <div ng-repeat="item in arShop track by $index" class="shopItem" ng-click="buyAR($index)">
+                    <!--<img ng-src="{{item.image}}" height="75px" width="75px" class="pull-left" ng-click="buyAR($index)"/>-->
+                    <h1 class="pull-right">{{ game.ar[$index] }}</h1>
+                    <h3>{{ item.name }}</h3>
+                    <p>Rate: ${{ item.rate | lnumber }}/hour</p>
+                    <p>Price: ${{ item.price * pow(1.3, game.ar[$index]) | lnumber }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-3" ng-cloak>
+            <div class="shopContent shadow">
+                <h3 class="shopHeader">App Closed Capacity</h3>
+                <div ng-repeat="item in acShop track by $index" class="shopItem" ng-click="buyAC($index)">
+                    <!--<img ng-src="{{item.image}}" height="75px" width="75px" class="pull-left" ng-click="buyAC($index)"/>-->
+                    <h1 class="pull-right">{{ game.ac[$index] }}</h1>
+                    <h3>{{ item.name }}</h3>
+                    <p>Capacity: ${{ item.rate | lnumber }}</p>
+                    <p>Price: ${{ item.price * pow(1.3, game.ac[$index]) | lnumber }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
