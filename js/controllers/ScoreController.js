@@ -1,4 +1,4 @@
-/*global $, console, app */
+/*global $, console, app, alert */
 
 app.controller('MainController', function ($scope, $timeout, $localstorage) {
     "use strict";
@@ -15,13 +15,11 @@ app.controller('MainController', function ($scope, $timeout, $localstorage) {
         $timeout(function () { $scope.err = true; }, 3000);
     }
 // -----------------------------------     Initialize Data    ------------------------------------ //
-    // get game data from localstorage
     var game = $localstorage.getObject('game');
 	// if no game data, fill with default
 	if (Object.keys(game).length === 0) {
-		game = {score: 0, rate: 0, click: 1, arc: 300, arr: 50,
+		game = {score: 0, rate: 0, click: 1, arc: 300, arr: 50, num: 0, i: 0,
                 p: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                c: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 ac: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 ar: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                };
@@ -33,7 +31,6 @@ app.controller('MainController', function ($scope, $timeout, $localstorage) {
     }
 	$scope.game = game;
 	save();
-    // initialize data
     $scope.shop = window.shop;
     $scope.cShop = window.cShop;
     $scope.arShop = window.arShop;
@@ -76,18 +73,6 @@ app.controller('MainController', function ($scope, $timeout, $localstorage) {
         $scope.closeNav();
         return;
 	};
-	// buy clock score increase
-	$scope.buyC = function (num) {
-        var p = $scope.cShop[num].price * Math.pow(2, $scope.game.c[num]);
-		if ($scope.game.score >= p) {
-			$scope.game.click += $scope.cShop[num].rate;
-			$scope.game.score -= p;
-			$scope.game.c[num] += 1;
-            save();
-		} else { err(p); }
-        $scope.closeNav();
-        return;
-	};
     // buy away capacity increase
     $scope.buyAC = function (num) {
         var p = $scope.acShop[num].price * Math.pow(1.3, $scope.game.ac[num]);
@@ -112,11 +97,30 @@ app.controller('MainController', function ($scope, $timeout, $localstorage) {
         $scope.closeNav();
         return;
     };
+    // increase score per click, 3-tier
+    $scope.buyC = function () {
+        if ($scope.game.num >= 22 && $scope.game.i >= 3) {
+            console.log("num = " + $scope.game.num);
+            return;
+        }
+        var p = $scope.cShop[$scope.game.num].price * Math.pow(2, $scope.game.i);
+        if ($scope.game.score >= p) {
+            $scope.game.score -= p;
+            $scope.game.click = $scope.cShop[$scope.game.num].rate * ($scope.game.i * 2 + 1);
+            $scope.game.i += 1;
+            save();
+        } else { err(p); }
+        if ($scope.game.num >= 22 && $scope.game.i >= 3) {
+            alert("You Win!!!");
+            return;
+        } else if ($scope.game.i >= 3) {
+            $scope.game.i = 0;
+            $scope.game.num += 1;
+        }
+    };
 // ---------------------------------     Display Functions    ----------------------------------- //
-    // power funciton
-    $scope.pow = function (a, b) { return Math.pow(a, b); };
-    // close nav
-    $scope.closeNav = function () { $("#navbar").collapse('hide'); };
+    $scope.pow = function (a, b) { return Math.pow(a, b); }; // power funciton
+    $scope.closeNav = function () { $("#navbar").collapse('hide'); }; // close nav
 // -------------------------------     Auto Score and Saving    --------------------------------- //
 	// save data to localstorage every 60s
 	setInterval(function () { $scope.$apply(function () { save(); }); }, 60000);

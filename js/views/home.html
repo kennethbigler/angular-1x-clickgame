@@ -1,7 +1,7 @@
 <div class="row">
     <header></header>
     <div class="container-fluid">
-        <div class="col-sm-12 col-md-4 col-lg-6">
+        <div class="col-sm-12 col-md-6 col-lg-8">
             <div class="center" ng-cloak>
                 <h2>Score: ${{ game.score | lnumber:3 }}</h2>
                 <p>
@@ -12,12 +12,22 @@
                 </p>
             </div>
             <img src="images/roadster.png" ng-click="add(game.click)" class="center handc" />
+            <div class="shopContent shadow">
+                <h3 class="shopHeader">Click Shop</h3>
+                <div class="shopItem" ng-click="buyC()">
+                    <!--<img ng-src="{{cShop[game.num].image}}" height="75px" width="75px" class="pull-left" />-->
+                    <h1 class="pull-right">{{ game.i + 1 }}</h1>
+                    <h3>{{ cShop[game.num].name }}</h3>
+                    <p>Rate: ${{ cShop[game.num].rate * (game.i * 2 + 1) | lnumber }}/click</p>
+                    <p>Price: ${{ cShop[game.num].price * pow(2, game.i) | lnumber }}</p>
+                </div>
+            </div>
             <div id="shopError" class="alert alert-danger" role="alert" ng-hide="err">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Money: {{ game.score | lnumber }} <br />
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Cost: {{ ep | lnumber }}
             </div>
         </div>
-        <div class="hidden-xs hidden-sm col-md-4 col-lg-3" ng-cloak>
+        <div class="hidden-xs hidden-sm col-md-6 col-lg-4" ng-cloak>
             <div class="shopContent shadow">
                 <h3 class="shopHeader">Passive Shop</h3>
                 <div ng-repeat="item in shop track by $index" class="shopItem" ng-click="buyP($index)">
@@ -26,18 +36,6 @@
                     <h3>{{ item.name }}</h3>
                     <p>Rate: ${{ item.rate | lnumber }}/sec</p>
                     <p>Price: ${{ item.price * pow(1.3, game.p[$index]) | lnumber }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="hidden-xs hidden-sm col-md-4 col-lg-3" ng-cloak>
-            <div class="shopContent shadow">
-                <h3 class="shopHeader">Click Shop</h3>
-                <div ng-repeat="item in cShop track by $index" class="shopItem" ng-click="buyC($index)">
-                    <!--<img ng-src="{{item.image}}" height="75px" width="75px" class="pull-left" ng-click="buyC($index)"/>-->
-                    <h1 class="pull-right">{{ game.c[$index] }}</h1>
-                    <h3>{{ item.name }}</h3>
-                    <p>Rate: ${{ item.rate | lnumber }}/click</p>
-                    <p>Price: ${{ item.price * pow(2, game.c[$index]) | lnumber }}</p>
                 </div>
             </div>
         </div>
