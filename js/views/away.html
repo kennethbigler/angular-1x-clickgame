@@ -1,12 +1,12 @@
 <div class="row">
     <header></header>
     <div class="container-fluid">
-        <button ng-click="collect()" class="btn btn-danger btn-lg btn-block">Collect Money</button>
         <div class="col-sm-12 col-md-4 col-lg-6">
             <div class="center" ng-cloak>
                 <h2>Score: ${{ game.score | lnumber:3 }}</h2>
                 <p>Rate/hour: ${{ game.arr | lnumber }}<br />Away Max: ${{ game.arc | lnumber }}</p>
             </div>
+            <button ng-click="collect()" class="btn btn-danger btn-lg btn-block">Collect Money</button>
             <div id="shopError" class="alert alert-danger" role="alert" ng-hide="err">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Money: {{ game.score | lnumber }} <br />
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Cost: {{ ep | lnumber }}

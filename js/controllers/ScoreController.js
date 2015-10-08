@@ -1,13 +1,11 @@
-/*global $, console, app*/
+/*global $, console, app */
 
 app.controller('MainController', function ($scope, $timeout, $localstorage) {
     "use strict";
 // -------------------------------     Define Helper Functions    -------------------------------- //
-	//helper function that saves cookies
+	// helper function to save to localstorage
 	function save() {
 		$localstorage.putObject('game', $scope.game);
-        //var games = $localstorage.getObject('game');
-        //console.log(games);
 		console.log("saved");
 	}
     // report not enough money
@@ -17,9 +15,9 @@ app.controller('MainController', function ($scope, $timeout, $localstorage) {
         $timeout(function () { $scope.err = true; }, 3000);
     }
 // -----------------------------------     Initialize Data    ------------------------------------ //
-    // get game data from cookies
-	var game = $localstorage.getObject('game');
-	// if there was no game data fill with default values
+    // get game data from localstorage
+    var game = $localstorage.getObject('game');
+	// if no game data, fill with default
 	if (Object.keys(game).length === 0) {
 		game = {score: 0, rate: 0, click: 1, arc: 300, arr: 50,
                 p: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -29,22 +27,21 @@ app.controller('MainController', function ($scope, $timeout, $localstorage) {
                };
         game.date = new Date();
     } else {
+        // prep date data from cookies
         game.date.slice(0, -5);
         game.date = new Date(game.date);
     }
-	// set model to view
 	$scope.game = game;
 	save();
-    //Initialize Shops
+    // initialize data
     $scope.shop = window.shop;
     $scope.cShop = window.cShop;
     $scope.arShop = window.arShop;
     $scope.acShop = window.acShop;
-    // initialize warning to hidden
     $scope.err = true;
     $scope.ep = 0;
 // --------------------------------     Scope Score Modifiers    -------------------------------- //
-	//reset score
+	// reset score
     $scope.reset = function () {
 		$localstorage.remove('game');
         window.location.reload();
@@ -67,7 +64,7 @@ app.controller('MainController', function ($scope, $timeout, $localstorage) {
         save();
     };
 // -------------------------------------     Purchasing    -------------------------------------- //
-	// buy items that passively increase score
+    // buy passive score increase
 	$scope.buyP = function (num) {
         var p = $scope.shop[num].price * Math.pow(1.3, $scope.game.p[num]);
 		if ($scope.game.score >= p) {
@@ -79,7 +76,7 @@ app.controller('MainController', function ($scope, $timeout, $localstorage) {
         $scope.closeNav();
         return;
 	};
-	// buy items that increase score per click
+	// buy clock score increase
 	$scope.buyC = function (num) {
         var p = $scope.cShop[num].price * Math.pow(2, $scope.game.c[num]);
 		if ($scope.game.score >= p) {
@@ -91,7 +88,7 @@ app.controller('MainController', function ($scope, $timeout, $localstorage) {
         $scope.closeNav();
         return;
 	};
-    // buy items that increase score per hour
+    // buy away capacity increase
     $scope.buyAC = function (num) {
         var p = $scope.acShop[num].price * Math.pow(1.3, $scope.game.ac[num]);
         if ($scope.game.score >= p) {
@@ -103,7 +100,7 @@ app.controller('MainController', function ($scope, $timeout, $localstorage) {
         $scope.closeNav();
         return;
     };
-    // buy items that increase score per hour
+    // buy score per hour increase
     $scope.buyAR = function (num) {
         var p = $scope.arShop[num].price * Math.pow(1.3, $scope.game.ar[num]);
         if ($scope.game.score >= p) {
@@ -116,25 +113,13 @@ app.controller('MainController', function ($scope, $timeout, $localstorage) {
         return;
     };
 // ---------------------------------     Display Functions    ----------------------------------- //
-    // allow power funciton in html
+    // power funciton
     $scope.pow = function (a, b) { return Math.pow(a, b); };
-    // close nav after a click
+    // close nav
     $scope.closeNav = function () { $("#navbar").collapse('hide'); };
 // -------------------------------     Auto Score and Saving    --------------------------------- //
-	// save data to cookies every 60 seconds
+	// save data to localstorage every 60s
 	setInterval(function () { $scope.$apply(function () { save(); }); }, 60000);
-	// add passive score every 1/10th of a second
+	// add passive score every 1/10th of a sec
     setInterval(function () { $scope.$apply(function () { $scope.add($scope.game.rate / 10); }); }, 100);
 });
-/*  function save() {
-        $cookies.putObject('game', $scope.game);
-        console.log("saved");
-    }
-    // get game data from cookies
-	var game = $cookies.getObject('game');
-    if (!game) {...}
-    //reset score
-    $scope.reset = function () {
-		$cookies.remove('game');
-		window.location.reload();
-	};*/
