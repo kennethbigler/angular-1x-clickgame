@@ -4,19 +4,14 @@
         <div class="col-sm-12 col-md-6 col-lg-8">
             <div class="center" ng-cloak>
                 <h2>Score: ${{ game.score | lnumber:3 }}</h2>
-                <p>
-                    Rate/sec: ${{ game.rate | lnumber }}<br />
-                    Rate/click: ${{ game.click | lnumber }}<br />
-                    Rate/hour: ${{ game.arr | lnumber }}<br />
-                    Away Max: ${{ game.arc | lnumber }}
-                </p>
+                <p>Rate/sec: ${{ game.rate | lnumber }}<br />Rate/click: ${{ game.click | lnumber }}</p>
             </div>
             <img src="images/roadster.png" ng-click="add(game.click)" class="center handc" />
             <div class="shopContent shadow">
                 <h3 class="shopHeader">Click Shop</h3>
                 <div class="shopItem" ng-click="buyC()">
                     <!--<img ng-src="{{cShop[game.num].image}}" height="75px" width="75px" class="pull-left" />-->
-                    <h1 class="pull-right">{{ game.i + 1 }}</h1>
+                    <h1 class="pull-right">{{ game.i }}</h1>
                     <h3>{{ cShop[game.num].name }}</h3>
                     <p>Rate: ${{ cShop[game.num].rate * (game.i * 2 + 1) | lnumber }}/click</p>
                     <p>Price: ${{ cShop[game.num].price * pow(2, game.i) | lnumber }}</p>

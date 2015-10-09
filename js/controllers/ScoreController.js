@@ -15,19 +15,21 @@ app.controller('MainController', function ($scope, $timeout, $localstorage) {
         $timeout(function () { $scope.err = true; }, 3000);
     }
 // -----------------------------------     Initialize Data    ------------------------------------ //
-    var game = $localstorage.getObject('game');
+    var date = $localstorage.getObject('date'),
+        game = $localstorage.getObject('game');
 	// if no game data, fill with default
 	if (Object.keys(game).length === 0) {
-		game = {score: 0, rate: 0, click: 1, arc: 300, arr: 50, num: 0, i: 0,
+		game = {score: 200, rate: 0, click: 0, arc: 300, arr: 50, num: 0, i: 0,
                 p: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 ac: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 ar: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                };
-        game.date = new Date();
+        $localstorage.putObject('date', new Date());
     } else {
         // prep date data from cookies
-        game.date.slice(0, -5);
-        game.date = new Date(game.date);
+        date.slice(0, -5);
+        date = new Date(date);
+        $localstorage.putObject('date', date);
     }
 	$scope.game = game;
 	save();
@@ -49,14 +51,16 @@ app.controller('MainController', function ($scope, $timeout, $localstorage) {
 		return;
 	};
     $scope.collect = function () {
-        var date = new Date(),
-            m = ((date - game.date) / 216000000) * game.arr;
+        var d = new Date(),
+            m = ((d - date) / 216000000) * game.arr;
         if (game.arc < m) {
             game.score += game.arc;
         } else {
             game.score += m;
         }
-        game.date = date;
+        date = d;
+        console.log(m);
+        $localstorage.putObject('date', date);
         $scope.closeNav();
         save();
     };
