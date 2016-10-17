@@ -52,7 +52,7 @@ app.controller('MainController', function ($scope, $timeout, $localstorage) {
 	};
     $scope.collect = function () {
         var d = new Date(),
-            m = ((d - date) / 216000000) * game.arr;
+            m = isNaN(date) ? 0 : ((d - date) / 216000000) * game.arr;
         if (game.arc < m) {
             game.score += game.arc;
         } else {
