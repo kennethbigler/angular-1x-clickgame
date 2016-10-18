@@ -19,7 +19,7 @@
         <div class="col-sm-6" ng-cloak>
             <div class="shopContent shadow">
                 <h3 class="shopHeader">App Closed Rate</h3>
-                <div ng-repeat="item in arShop track by $index" class="shopItem" ng-click="buyAR($index)">
+                <div ng-repeat="item in arShop track by $index" class="shopItem handc clicked" ng-click="buyAR($index)">
                     <!--<img ng-src="{{item.image}}" height="75px" width="75px" class="pull-left" ng-click="buyAR($index)"/>-->
                     <h1 class="pull-right">{{ game.ar[$index] }}</h1>
                     <h3>{{ item.name }}</h3>
@@ -31,7 +31,7 @@
         <div class="col-sm-6" ng-cloak>
             <div class="shopContent shadow">
                 <h3 class="shopHeader">App Closed Capacity</h3>
-                <div ng-repeat="item in acShop track by $index" class="shopItem" ng-click="buyAC($index)">
+                <div ng-repeat="item in acShop track by $index" class="shopItem handc clicked" ng-click="buyAC($index)">
                     <!--<img ng-src="{{item.image}}" height="75px" width="75px" class="pull-left" ng-click="buyAC($index)"/>-->
                     <h1 class="pull-right">{{ game.ac[$index] }}</h1>
                     <h3>{{ item.name }}</h3>

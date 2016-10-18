@@ -7,7 +7,7 @@
                 <p>Rate/sec: ${{ game.rate | lnumber }}<br />Rate/click: ${{ game.click | lnumber }}</p>
             </div>
             <img src="images/cat.jpeg" ng-click="add(game.click)" class="center shadow handc clicked" />
-            <div class="shopContent shadow">
+            <div class="shopContent shadow clicked handc">
                 <h3 class="shopHeader">Click Shop</h3>
                 <div class="shopItem" ng-click="buyC()">
                     <!--<img ng-src="{{cShop[game.num].image}}" height="75px" width="75px" class="pull-left" />-->
@@ -25,7 +25,7 @@
         <div class="hidden-xs hidden-sm col-md-6 col-lg-4" ng-cloak>
             <div class="shopContent shadow">
                 <h3 class="shopHeader">Passive Shop</h3>
-                <div ng-repeat="item in shop track by $index" class="shopItem" ng-click="buyP($index)">
+                <div ng-repeat="item in shop track by $index" class="shopItem handc clicked" ng-click="buyP($index)">
                     <!--<img ng-src="{{item.image}}" height="75px" width="75px" class="pull-left" ng-click="buyP($index)"/>-->
                     <h1 class="pull-right">{{ game.p[$index] }}</h1>
                     <h3>{{ item.name }}</h3>
