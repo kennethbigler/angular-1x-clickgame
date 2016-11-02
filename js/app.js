@@ -25,6 +25,9 @@ var app = angular.module('myApp', ['ngRoute'])
                     reduced = 0,
                     i = 0,
                     powers = [
+                        {key: "MQQ", value: Math.pow(10, 36)},
+                        {key: "KQQ", value: Math.pow(10, 33)},
+                        {key: "QQ", value: Math.pow(10, 30)},
                         {key: "TQ", value: Math.pow(10, 27)},
                         {key: "BQ", value: Math.pow(10, 24)},
                         {key: "MQ", value: Math.pow(10, 21)},

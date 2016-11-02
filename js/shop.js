@@ -1,243 +1,244 @@
 //Items for Passive Bonuses
 window.shop = [{
-    "name":   "Piggy Bank",
+    "name":   "Safe Pet Food Dispenser Toy",
     "image":  "images/roadster.png",
     "price":  80,
     "rate":   0.5
 }, {
-    "name":   "Mattress",
+    "name":   "Three-Way Cat Tunnel",
     "image":  "images/roadster.png",
     "price":  400,
     "rate":   1
 }, {
-    "name":   "Comic Book Collection",
+    "name":   "Tower of Tracks and Balls Toy",
     "image":  "images/roadster.png",
     "price":  1600,
     "rate":   3
 }, {
-    "name":   "Savings Account",
+    "name":   "Peek and Play Toybox",
     "image":  "images/roadster.png",
     "price":  8000,
     "rate":   16
 }, {
-    "name":   "Bitcoin Account",
+    "name":   "Laser Pointer",
     "image":  "images/roadster.png",
     "price":  39000,
     "rate":   50
 }, {
-    "name":   "Stocks",
+    "name":   "Pounce Mouse Toy",
     "image":  "images/roadster.png",
     "price":  156000,
     "rate":   200
 }, {
-    "name":   "Bookie",
+    "name":   "Remote Control Rat",
     "image":  "images/roadster.png",
     "price":  650000,
     "rate":   833
 }, {
-    "name":   "Loan Shark",
+    "name":   "Mystery Motion Toy",
     "image":  "images/roadster.png",
     "price":  1620000,
     "rate":   3050
 }, {
-    "name":   "Angel Investment",
+    "name":   "Star Chaser Toy",
     "image":  "images/roadster.png",
     "price":  3250000,
     "rate":   10500
 }, {
-    "name":   "Venture Capital",
+    "name":   "Mega Cat Claw Perch",
     "image":  "images/roadster.png",
     "price":  5200000,
     "rate":   27700
 }, {
-    "name":   "Pork Belly Futures",
+    "name":   "Sponge Soccer Balls",
     "image":  "images/roadster.png",
     "price":  48750000,
     "rate":   72200
 }, {
-    "name":   "Hedge Fund",
+    "name":   "Wood and Feathers Toy Kit",
     "image":  "images/roadster.png",
     "price":  520000000,
     "rate":   2250000
 }, {
-    "name":   "Investment Bank",
+    "name":   "Cat Charmer Wand",
     "image":  "images/roadster.png",
     "price":  7800000000,
     "rate":   9720000
 }, {
-    "name":   "Insider Trading",
+    "name":   "Remote Control Mouse",
     "image":  "images/roadster.png",
     "price":  650000000000,
     "rate":   277000000
 }, {
-    "name":   "Subprime Mortgages",
+    "name":   "Star Chaser Turbo Scratcher",
     "image":  "images/roadster.png",
     "price":  22000000000000,
     "rate":   13300000000
 }, {
-    "name":   "Pyramid Scheme",
+    "name":   "Cardboard Box",
     "image":  "images/roadster.png",
     "price":  96500000000000,
     "rate":   55500000000
 }, {
-    "name":   "Hypercube Scheme",
+    "name":   "Bane Mask",
     "image":  "images/roadster.png",
     "price":  900000000000000,
     "rate":   177000000000
 }, {
-    "name":   "Unholy Alliance",
+    "name":   "Tetherball Pole",
     "image":  "images/roadster.png",
     "price":  26000000000000000,
     "rate":   13000000000000
 }, {
-    "name":   "Honey Laundering",
+    "name":   "iPad",
     "image":  "images/roadster.png",
     "price":  190000000000000000,
     "rate":   94400000000000
 }, {
-    "name":   "Flash Trading",
+    "name":   "Floppy Tongue",
     "image":  "images/roadster.png",
     "price":  590000000000000000,
     "rate":   237000000000000
 }, {
-    "name":   "Check Cashing",
+    "name":   "Keyboard",
     "image":  "images/roadster.png",
     "price":  3480000000000000000,
     "rate":   1690000000000000
 }, {
-    "name":   "Upload Brain",
+    "name":   "Roomba and a Shark Costume",
     "image":  "images/roadster.png",
     "price":  9990000000000000000,
     "rate":   9160000000000000
 }, {
-    "name":   "Software Patent Portfolio",
+    "name":   "Pop-Tarts and Rainbows",
     "image":  "images/roadster.png",
     "price":  70000000000000000000,
     "rate":   29200000000000000
 }, {
-    "name":   "Multi-level Marketing",
+    "name":   "A Grumpy Disposition",
     "image":  "images/roadster.png",
     "price":  1550000000000000000000,
     "rate":   70700000000000000
-}];
+}]; //24 
+
 
 //Items for Click Bonuses
 window.cShop = [{
-    "name":   "Paper Route",
+    "name":   "Manx",
     "image":  "images/roadster.png",
     "price":  200,
     "rate":   1
 }, {
-    "name":   "Lemonade Stand",
+    "name":   "Singapura",
     "image":  "images/roadster.png",
-    "price":  3410,
+    "price":  3500,
     "rate":   10
 }, {
-    "name":   "Flower Cart",
+    "name":   "Ocicat",
     "image":  "images/roadster.png",
-    "price":  68250,
+    "price":  75000,
     "rate":   100
 }, {
-    "name":   "Coffee Shop",
+    "name":   "Egyptian Mau",
     "image":  "images/roadster.png",
-    "price":  1360000,
+    "price":  1500000,
     "rate":   1000
 }, {
-    "name":   "Fast Food Chain",
+    "name":   "Russian Blue",
     "image":  "images/roadster.png",
-    "price":  20400000,
+    "price":  20000000,
     "rate":   10000
 }, {
-    "name":   "Casino",
+    "name":   "Tonkinese",
     "image":  "images/roadster.png",
-    "price":  273000000,
+    "price":  250000000,
     "rate":   100000
 }, {
-    "name":   "Cigarette Factory",
+    "name":   "Siberian",
     "image":  "images/roadster.png",
-    "price":  3640000000,
+    "price":  4000000000,
     "rate":   1000000
 }, {
-    "name":   "Soda Company",
+    "name":   "Burmese",
     "image":  "images/roadster.png",
-    "price":  54600000000,
+    "price":  55000000000,
     "rate":   10000000
 }, {
-    "name":   "Railroad Monopoly",
+    "name":   "Birman",
     "image":  "images/roadster.png",
-    "price":  824000000000,
+    "price":  800000000000,
     "rate":   100000000
 }, {
-    "name":   "Strip Mine",
+    "name":   "Norwegian Forest Cat",
     "image":  "images/roadster.png",
-    "price":  11300000000000,
+    "price":  12000000000000,
     "rate":   1000000000
 }, {
-    "name":   "Arctic Drilling",
+    "name":   "Oriental",
     "image":  "images/roadster.png",
-    "price":  260000000000000,
+    "price":  250000000000000,
     "rate":   10000000000
 }, {
-    "name":   "Candy Theft Ring",
+    "name":   "Devon Rex",
     "image":  "images/roadster.png",
-    "price":  2560000000000000,
+    "price":  2500000000000000,
     "rate":   100000000000
 }, {
-    "name":   "Old Lady Smuggling",
+    "name":   "Cornish Rex",
     "image":  "images/roadster.png",
-    "price":  30500000000000000,
+    "price":  30000000000000000,
     "rate":   1000000000000
 }, {
-    "name":   "Clown College",
+    "name":   "Scottish Fold",
     "image":  "images/roadster.png",
-    "price":  482000000000000000,
+    "price":  500000000000000000,
     "rate":   10000000000000
 }, {
-    "name":   "NSA Collaborator",
+    "name":   "Siamese",
     "image":  "images/roadster.png",
-    "price":  6870000000000000000,
+    "price":  7000000000000000000,
     "rate":   100000000000000
 }, {
-    "name":   "Dog Massage Parlor",
+    "name":   "Sphynx",
     "image":  "images/roadster.png",
-    "price":  78700000000000000000,
+    "price":  80000000000000000000,
     "rate":   1000000000000000
 }, {
-    "name":   "Cat Herding Corp",
+    "name":   "Abyssinian",
     "image":  "images/roadster.png",
-    "price":  887000000000000000000,
+    "price":  900000000000000000000,
     "rate":   10000000000000000
 }, {
-    "name":   "Cryogenic Brain Storage",
+    "name":   "American Shorthair",
     "image":  "images/roadster.png",
-    "price":  10800000000000000000000,
+    "price":  10000000000000000000000,
     "rate":   100000000000000000
 }, {
-    "name":   "Electronic Apiary",
+    "name":   "British Shorthair",
     "image":  "images/roadster.png",
-    "price":  123000000000000000000000,
+    "price":  120000000000000000000000,
     "rate":   1000000000000000000
 }, {
-    "name":   "Banana Stand",
+    "name":   "Ragdoll",
     "image":  "images/roadster.png",
-    "price":  1380000000000000000000000,
+    "price":  1500000000000000000000000,
     "rate":   10000000000000000000
 }, {
-    "name":   "Rainforest Lumber",
+    "name":   "Maine Coon Cat",
     "image":  "images/roadster.png",
-    "price":  14500000000000000000000000,
+    "price":  15000000000000000000000000,
     "rate":   100000000000000000000
 }, {
-    "name":   "Prescription Pain Killers",
+    "name":   "Persian",
     "image":  "images/roadster.png",
-    "price":  158000000000000000000000000,
+    "price":  150000000000000000000000000,
     "rate":   1000000000000000000000
 }, {
-    "name":   "Coal Power Plant",
+    "name":   "Exotic",
     "image":  "images/roadster.png",
-    "price":  1630000000000000000000000000,
+    "price":  1500000000000000000000000000,
     "rate":   10000000000000000000000
-}];
+}]; //23
 
 //Items for away passive capacity
 window.acShop = [{
@@ -295,7 +296,7 @@ window.acShop = [{
     "image":  "images/roadster.png",
     "price":  555000000000000000000,
     "rate":   220000000000000000000
-}];
+}]; //11
 
 //Items for away passive rate
 window.arShop = [{
@@ -353,4 +354,4 @@ window.arShop = [{
     "image":  "images/roadster.png",
     "price":  4770000000000000000,
     "rate":   880000000000000000
-}];
+}]; //11
